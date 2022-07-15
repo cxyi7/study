@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txtt" id="txtt">
+		<script>
+			/**
+			 * 节流
+			 */
+			// 时间戳 
+			function throttled1(fn, delay = 500) {
+			    let oldtime = Date.now()
+			    return function (...args) {
+			        let newtime = Date.now()
+					let ctx = this
+			        if (newtime - oldtime >= delay) {
+			            fn.apply(this, args)
+			            oldtime = Date.now()
+			        }
+			    }
+			}
+			// 定时器
+			function throttled2(fn, delay = 500) {
+			    let timer = null
+			    return function (...args) {
+					let ctx = this
+			        if (!timer) {
+			            timer = setTimeout(() => {
+			                fn.apply(null, args)
+			                timer = null
+			            }, delay);
+			        }
+			    }
+			}
+			// window.addEventListener('mousemove',throttled2(function(e){
+			// 	console.log(e)
+			// },1000))
+			
+			
+			/**
+			 * 防抖 
+			 */
+			// 非立即执行，N秒后才会执行
+			function debounce1(fn,delay = 500) {
+				let timer = null
+				
+				return function (...args) {
+					let ctx = this
+					clearTimeout(timer)
+					timer = setTimeout(() =>{
+						fn.apply(ctx, args)
+					}, delay)
+				}
+			}
+			function debounce2(fn,delay,immediate) {
+				let timer = null
+				
+				return function(...args) {
+					let ctx = this
+					if(timer) {
+						clearTimeout(timer)
+					}
+					if(immediate) {
+						let callnow = !timer
+						timer = setTimeout(() => {
+							timer = null
+						}, delay)
+						if(callnow) {
+							fn.apply(ctx, args)
+						}
+					} else {
+						timer = setTimeout(() => {
+							fn.apply(ctx, args)
+						}, delay)
+					}
+				}
+			}
+			const ipt = document.querySelector('input')
+			console.log(ipt)
+			ipt.addEventListener('keyup',debounce2(() => {
+				console.log(ipt.value)
+			},500, true))
+		</script>
+	</body>
+</html>
