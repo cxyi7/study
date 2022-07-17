@@ -1,0 +1,22 @@
+{
+  "name": "interviews",
+  "version": "1.0.0",
+  "description": "面试宝典",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cxyi7/interviews.git"
+  },
+  "author": "cxyi7",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cxyi7/interviews/issues"
+  },
+  "homepage": "https://github.com/cxyi7/interviews#readme",
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}

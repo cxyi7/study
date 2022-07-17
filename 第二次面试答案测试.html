@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			const arr = [NaN, null, undefined, [], {}, '']
+			function test1(i){
+				if(Object.is(i,NaN)) {
+					return `${i} 是 NaN`
+				} else if(Object.is(i,undefined)){
+					return `${i} 是 undefined`
+					
+				} else if(Object.is(i,null)){
+					return `${i} 是 null`
+					
+				} else if(Object.is(i,'')){
+					return `'' 是 ''`
+					
+				} else if(Object.is(JSON.stringify([]), '[]')) {
+					return `${JSON.stringify([])} 是 []`
+					
+				} else if(Object.is(JSON.stringify({}), '{}')) {
+					return `${i} 是 {}`
+					
+				} else {
+					return '啥也不是'
+				}
+			}
+			let aaa = test1(['s'])
+			console.log(aaa)
+			console.log(typeof undefined) //undefined
+			console.log(typeof [])  // object
+			console.log(typeof {}) //object
+			console.log(typeof '') //string
+			console.log(typeof null) //object
+			console.log(Object.is(NaN,NaN)) // true
+			console.log(Object.is(undefined,undefined)) // true
+			console.log(Object.is(null,null)) // true
+			console.log(Object.is('','')) // true
+			console.log(Object.is([],{})) // false
+			console.log(Object.is({},{})) // false
+			console.log(Array.isArray([]))
+			console.log(Array.isArray({}))
+			console.log(Object.is(JSON.stringify(['ss']), '[]'))
+			console.log(Object.is(JSON.stringify([]), '[]'))
+		</script>
+	</body>
+</html>
