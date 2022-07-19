@@ -219,7 +219,7 @@
 				})
 				return p1
 			}
-			myPromise.race = function(promise = []) {
+			myPromise.race = function(promiseList = []) {
 				if(!Array.isArray(promiseList)) throw new TypeError('请传入一个数组')
 				let resolved = false //标记
 				const p1 = new myPromise((resolve, reject) => {
@@ -237,13 +237,14 @@
 						})
 					})
 				})
+				return p1
 			}
 			
 			const p = new myPromise((resolve,reject) => {
 				// resolve(20)
 				// reject('err')
 				setTimeout(function() {
-					resolve(100)
+					reject(100)
 				}, 1000);
 			})
 			const p0 = new myPromise((resolve,reject) => {
@@ -258,12 +259,13 @@
 			const p2 = myPromise.resolve(40)
 			const p3 = myPromise.reject('err')
 			
-			const p4 = myPromise.all([p,p1,p0,p2])
+			const p4 = myPromise.all([p,p1,p0,p2,p3])
 			console.log(p4)
 			const p5 = p4.then(err => console.log(err))
 			
-			const p6 = myPromise.race([p, p3])
-			p6.then(data => console)
+			// const p6 = myPromise.race([p, p1])
+			// console.log(p6)
+			// p6.catch(data => console)
 			
 			// const p1 = p.then(data => {
 			// 	console.log('data', data)
