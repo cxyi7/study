@@ -1,5 +1,4 @@
-module.exports = {
-	test1(i){
+module.exports = (i) => {
 		if(Object.is(i,NaN)) {
 			return `这是NaN`
 		} else if(Object.is(i,undefined)){
@@ -21,4 +20,3 @@ module.exports = {
 			return '啥也不是'
 		}
 	}
-}
