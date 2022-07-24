@@ -151,7 +151,40 @@
 			// const bb = []
 			// console.log(Object.prototype.toString.call(aa) === Object.prototype.toString.call(bb))
 			
+			// const  arr = [1,2,3]
+			// // const abb = arr.map((item,index) => {
+			// // 	return item * 2
+			// // })
+			// // console.log(abb)
+			// arr.forEach(item => {
+			// 	item * 3
+			// 	// return item * 3
+			// })
+			// // console.log(b)
 			
+			// const arr = [1,2,3]
+			// const a = arr.filter(item => item >= 2)
+			// const b = arr.map(item => item * 2)
+			// const c = arr.slice()
+			// c.push(1)
+			// console.log(c)
+			// console.log(arr)
+			
+			// const arr = [1,2,3,4]
+			
+			
+			// for (let i = 0; i < 5; i++) {
+			// 	setTimeout(() => {
+			// 		console.log(i)
+			// 	},10)
+			// }
+			
+			String.prototype.trim = function () {
+				return this.replace(/^\s+/, '').replace(/\s+$/, '')
+			}
+			const aa = ' ss 1'
+			const bb = aa.trim()
+			console.log(bb)
 		</script>
 	</body>
 </html>
