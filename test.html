@@ -179,12 +179,71 @@
 			// 	},10)
 			// }
 			
-			String.prototype.trim = function () {
-				return this.replace(/^\s+/, '').replace(/\s+$/, '')
+			// String.prototype.trim = function () {
+			// 	return this.replace(/^\s+/, '').replace(/\s+$/, '')
+			// }
+			// const aa = ' ss 1'
+			// const bb = aa.trim()
+			// console.log(bb)
+			
+			// const a = [1,2,3,4]
+			// const b = a.some(item => item>2)
+			// console.log(b)
+			
+			// const a = [1,2,3,4,[1,2]]
+			// const b = [].concat.apply([],a)
+			// console.log(b)
+			
+			// <!-- 传统方式 -->
+			// function unique1(arr) {
+			// 	let res = []
+			// 	arr.forEach(item => {
+			// 		if(!res.includes(item)){
+			// 			res.push(item)
+			// 		}
+			// 	})
+			// 	return res
+			// }
+			// const arr = [1,2,3,4,5,2,6,1]
+			// const arr2 = unique1(arr)
+			// console.log(arr2)
+			// // <!-- set -->
+			// function unique2(arr) {
+			// 	const res = new Set(arr)
+			// 	console.log(res)
+			// 	return [...res]
+			// }
+			// const arr3 = unique2(arr)
+			// console.log(arr3)
+			function deepClone(obj) {
+				if (typeof obj !== 'object' || obj == null) {
+					return obj
+				}
+				
+				let result
+				if(obj instanceof Array) {
+					result = []
+				} else {
+					result = {}
+				}
+				
+				for(const i in obj) {
+					if(obj.hasOwnProperty(i)) {
+						result[i] = deepClone(obj[i])
+					}
+				}
+				
+				return result
 			}
-			const aa = ' ss 1'
-			const bb = aa.trim()
-			console.log(bb)
+			const a = {
+				qq: 'ss',
+				ww: null,
+				ee: {
+					ss: 'aa'
+				}
+			}
+			const b = deepClone(a)
+			console.log(b)
 		</script>
 	</body>
 </html>
