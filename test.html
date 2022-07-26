@@ -215,33 +215,71 @@
 			// }
 			// const arr3 = unique2(arr)
 			// console.log(arr3)
+			// function deepClone(obj) {
+			// 	if (typeof obj !== 'object' || obj == null) {
+			// 		return obj
+			// 	}
+				
+			// 	let result
+			// 	if(obj instanceof Array) {
+			// 		result = []
+			// 	} else {
+			// 		result = {}
+			// 	}
+				
+			// 	for(const i in obj) {
+			// 		if(obj.hasOwnProperty(i)) {
+			// 			result[i] = deepClone(obj[i])
+			// 		}
+			// 	}
+				
+			// 	return result
+			// }
+			// const a = {
+			// 	qq: 'ss',
+			// 	ww: null,
+			// 	ee: {
+			// 		ss: 'aa'
+			// 	}
+			// }
+			// const b = deepClone(a)
+			// console.log(b)
+			
+			// function flatern(arr) {
+			// 	if (!Array.isArray(arr)) return false
+				
+			// 	const result = arr.some(item => item instanceof Array)
+			// 	if (!result) {
+			// 		return arr
+			// 	}
+				
+			// 	const res = Array.prototype.concat.apply([], arr)
+			// 	return flatern(res)
+			// }
+			// const a = [1,2,3,[1,2,3,[1,2,3]]]
+			// console.log(flatern(a))
+			
 			function deepClone(obj) {
 				if (typeof obj !== 'object' || obj == null) {
 					return obj
 				}
 				
-				let result
-				if(obj instanceof Array) {
-					result = []
+				let res
+				if (obj instanceof Array) {
+					res = []
 				} else {
-					result = {}
+					res = {}
 				}
 				
-				for(const i in obj) {
-					if(obj.hasOwnProperty(i)) {
-						result[i] = deepClone(obj[i])
+				for (let key in obj) {
+					if(obj.hasOwnProperty(key)) {
+						res[key] = deepClone(obj[key])
 					}
 				}
 				
-				return result
+				return res
 			}
-			const a = {
-				qq: 'ss',
-				ww: null,
-				ee: {
-					ss: 'aa'
-				}
-			}
+			const a = {a:1,b:2,c:{a:1,b:2},d:[1,2,3]}
 			const b = deepClone(a)
 			console.log(b)
 		</script>

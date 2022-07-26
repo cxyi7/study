@@ -1,4 +1,4 @@
-const isEqual = require('../answer/01')
+const isEqual = require('../answer/isTwoEqual')
 
 test('第一次', () => {
   const obj1 = 'ss'

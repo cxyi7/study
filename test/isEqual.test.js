@@ -1,4 +1,4 @@
-const isEqual = require('../answer/02');
+const isEqual = require('../answer/isEqual');
 
 test('第一次', () => {
   expect(isEqual([])).toBe('这是[]');
