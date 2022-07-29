@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小老弟，我来啦</title>
+	</head>
+	<body>
+		<script src="com.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+//			原型
+//       function Person(age){
+//       	this.age=age;
+//       }
+//       Person.prototype.sex="男";
+//       Person.prototype.eat=function(){
+//       	console.log("aa");
+//       }
+//       var per=new Person(20);
+//       per.eat();
+//       
+//      console.dir(per);
+//      console.log(per.__proto__==Person.prototype);
+//      console.dir(Person);
+         //实例对象中的__proto__与构造函数中的prototype是相同的
+         //实例对象中的__proto__是给浏览器使用的
+         //构造函数中的prototype是给程序员使用的
+         //原型链:是一种关系,实例对象和原型对象之间的关系,关系是通过原型(__proto__)来联系的
+         
+         
+//      原型的指向
+     function Person(age){
+     	this.age=age;
+     	this.eat=function(){
+     		console.log("aa");
+     	}
+     }
+     Person.prototype.eat=function(){
+     	console.log(this);
+     	console.log("啥");
+     }
+     var per=new Person(10);
+     per.eat();
+       
+       
+       
+//      function Person(age){
+//      	this.age=age;
+//      }
+//      Person.prototype.eat={
+//      	eat:function(){
+//      		console.log("a");
+//      	}
+//      }
+//      var at=new Person("10");
+//      at.eat();//无法调用eat函数，因为构造函数的原型指向改变了
+
+//      原型指向改变
+//     function Person(){
+//     	
+//     }
+//     Person.prototype.eat=function(){
+//     	console.log("a");
+//     }
+//     
+//     function Student (){
+//     	
+//     }
+//     Student.prototype.eat=function(){
+//     	console.log("s");
+//     }
+//     Student.prototype=new Person();
+//     var stu=new Student();
+//     stu.eat();//a 调用的是person里面的eat，说明原型指向被改变了，因此不能调用student的eat
+//     //先添加共享函数，然后再改变指向，不能再调用共享的函数========
+       
+       
+       
+//     原型的最终指向====Object.prototype
+//     function Person(){
+//     	
+//     }
+//     Person.prototype.eat=function(){
+//     	console.log("ss");
+//     }
+//     
+//     var per=new Person();
+//     console.dir(per);
+//     console.dir(Person);
+//     //实例对象中有_proto__这个原型
+//     //构造函数中也有prototype
+//     //prototype是一个原型对象
+//     //prototyp 对象中也有__proto__
+//     //实例对象中的__proto__指向了构造函数的prototype
+//     //那么prototype的__proto__指向的因该也是某个构造函数的原型prototype
+//     
+//     console.log(per.__proto__==Person.prototype);//true
+//     console.log(per.__proto__.__proto__==Person.prototype.__proto__);//true
+//     console.log(Person.prototype.__proto__==Object.prototype);//true
+//     console.log(Object.prototype.prototype);//null
+
+
+//    原型指向改变之添加方法和访问
+      //1.在指向改变之前就添加方法，则该方法不能被调用
+//    function Student(){
+//    	
+//    }
+//    Student.prototype.eat=function(){
+//    	console.log("aa");
+//    }
+//     function Person(){
+//     	
+//     }
+//     Person.prototype.play=function(){//指向改变之前就添加了
+//     		console.log("ss");
+//     	}
+//     Person.prototype=new Student();
+//     var per=new Person();
+//     per.eat();//可以调用
+//     per.play();//无法调用
+       
+       
+//     function Student(){
+//    	
+//    }
+//    Student.prototype.eat=function(){
+//    	console.log("aa");
+//    }
+//     function Person(){
+//     	
+//     }
+//     Person.prototype=new Student();
+//     Person.prototype.play=function(){//指向改变之后就添加
+//     		console.log("ss");
+//     	}
+//    
+//    var per=new Person();
+//    per.eat();//可以调用
+//    per.play();//可以调用
+
+//   =======结论:指向改变之前,添加方法,只是添加到原来的原型对象中,因此不能再调用.======
+
+//    function Student(age,sex){
+//    	this.age=age;
+//    	this.sex=sex;
+//    }
+//    Student.prototype.sex="mm";
+//    var stu=new Student(20,"xx");
+//    console.log(stu.sex);//xx
+//    stu.sex="xxx";
+//    console.log(stu.sex);//xxx
+//    因为JS是一门动态类型的语言,对象没有什么,只要点了,那么这个对象就有了这个东西,没有这个属性,只要对象.
+//    属性名字,对象就有这个属性了,但是,该属性没有赋值,所以,结果是:undefined
+
+//   一条原型链
+//      var divObj=document.getElementById("dv");
+//      console.dir(divObj);
+//     divObj.__proto__---->HTMLDivElement.prototype的__proto__--->HTMLElement.prototype的__proto__---->
+//     Element.prototype的__proto__---->Node.prototype的__proto__---->EventTarget.prototype的__proto__---->
+//     Object.prototype没有__proto__,所以,Object.prototype中的__proto__是null
+
+
+//  继承: 首先继承是一种关系,类(class)与类之间的关系,JS中没有类,但是可以通过构造函数模拟类,然后通过原型来实现继承
+    //即改变原型指向
+//  function Person(age,name){
+//  	this.name=name;
+//  	this.age=age;
+//  }
+//  Person.prototype.eat=function(){
+//  	console.log("aa");
+//  }
+//  Person.prototype.play=function(){
+//  	console.log("ss");
+//  }
+//  
+//  function Student(sex){
+//  	this.sex=sex;
+//  }
+// Student.prototype=new Person(20,"男啊");
+// Student.prototype.study=function(){
+// 	console.log("xx");
+// }
+// var stu=new Student("男");
+// console.log(stu.age+stu.name+stu.sex);//可以调用person里面的属性
+// stu.eat();//person中的
+// stu.play();//person中的
+// stu.study();//student中的
+
+     //动物有名字,有体重,有吃东西的行为
+    //小狗有名字,有体重,有毛色, 有吃东西的行为,还有咬人的行为
+    //哈士奇名字,有体重,有毛色,性别, 有吃东西的行为,还有咬人的行为,逗主人开心的行为
+
+    //动物的构造函数
+//  function Animal(name,weight) {
+//    this.name=name;
+//    this.weight=weight;
+//  }
+//  //动物的原型的方法
+//  Animal.prototype.eat=function () {
+//    console.log("天天吃东西,就是吃");
+//  };
+//
+//  //狗的构造函数
+//  function Dog(color) {
+//    this.color=color;
+//  }
+//  Dog.prototype=new Animal("哮天犬","50kg");//先改变指向，然后再添加方法
+//  Dog.prototype.bitePerson=function () {
+//    console.log("哼~汪汪~咬死你");
+//  };
+//
+//  //哈士奇
+//  function ErHa(sex) {
+//    this.sex=sex;
+//  }
+//  ErHa.prototype=new Dog("黑白色");
+//  ErHa.prototype.playHost=function () {
+//    console.log("哈哈~要坏衣服,要坏桌子,拆家..嘎嘎...好玩,开心不,惊喜不,意外不");
+//  };
+//  var erHa=new ErHa("雄性");
+//  console.log(erHa.name,erHa.weight,erHa.color);
+//  erHa.eat();
+//  erHa.bitePerson();
+//  erHa.playHost();
+    
+    
+    //属性继承
+    //为了数据共享,改变原型指向,做到了继承---通过改变原型指向实现的继承
+    //缺陷:因为改变原型指向的同时实现继承,直接初始化了属性，继承过来的属性的值都是一样的了,所以,这就是问题
+    //只能重新调用对象的属性进行重新赋值,
+
+
+    //解决方案:继承的时候,不用改变原型的指向,直接调用父级的构造函数的方式来为属性赋值就可以了------借用构造函数:把要继承的父级的构造函数拿过来,使用一下就可以了
+
+
+
+    //借用构造函数:构造函数名字.call(当前对象,属性,属性,属性....);
+    //解决了===属性继承,并且值不重复的问题
+    //缺陷:====父级类别中的方法不能继承
+    
+//  function Person(name,age){
+//  	this.age=age;
+//  	this.name=name;
+//  }
+//  Person.prototype.eat=function(){
+//  	console.log("eat");
+//  }
+//  function Student(name,age,sex){//将所需要的属性添加进去
+//  	Person.call(this,name,age);//直接调用父级的属性
+//  	this.sex=sex;
+//  }
+//  Student.prototype.study=function(){
+//  	console.log("study");
+//  }
+//  var stu=new Student("小丽",29,"男");
+//  console.log(stu.name+stu.age+stu.sex);//可以调用父级的属性
+//  stu.study();
+//  stu.eat();//无法调用父级的方法
+
+    
+    
+    //组合继承====》方法和属性都继承
+//   function Person(name,age){
+//  	this.age=age;
+//  	this.name=name;
+//  }
+//  Person.prototype.eat=function(){
+//  	console.log("eat");
+//  }
+//  function Student(name,age,sex){//将所需要的属性添加进去
+//  	Person.call(this,name,age);//直接调用父级的属性
+//  	this.sex=sex;
+//  }
+//  Student.prototype=new Person();//不用传值过去
+//  Student.prototype.study=function(){
+//  	console.log("study");
+//  }
+//  var stu=new Student("小丽",29,"男");
+//  console.log(stu.name+stu.age+stu.sex);//可以调用父级的属性
+//  stu.study();
+//  stu.eat();//可以调用父级的
+
+//  拷贝继承
+   
+   
+   //只是把地址给了stu，但是并没有在堆中开辟一个空间，也就是只有一个空间来存放数据
+//  var per={
+//  	age:10,
+//  	name:"小丽",
+//  	eat:function(){
+//  		console.log("aa");
+//  	}
+//  }
+//  var stu=per;
+//  console.log(stu.age+stu.name);
+//  stu.eat();
+
+
+//  不只是把地址给了stu,还在堆中又开辟了一个空间来存放数据
+//  function Person(age,name){
+//  	this.age=age;
+//  	this.name=name;
+//  }
+//  Person.prototype.sex="男";
+//  Person.prototype.eat=function(){
+//  	console.log("啊啊2");
+//  }
+//  
+//  var stu={};
+//  for (var key in Person.prototype) {
+//  	stu[key]=Person.prototype[key];
+//  }
+//  console.log(stu.sex);
+//  stu.eat();
+
+ 
+//   原型继承:改变原型的指向
+//   借用构造函数继承:主要解决属性的问题
+//   组合继承:原型继承+借用构造函数继承
+//   既能解决属性问题,又能解决方法问题
+//   拷贝继承:就是把对象中需要共享的属性或者犯法,直接遍历的方式复制到另一个对象中
+
+
+//  函数声明和函数表达式
+//  function f1(){//声明
+//  	
+//  }
+//  var f1=function(){//表达式
+//  	
+//  }
+
+
+//  函数声明和函数表达式的区别
+//  if (true) {
+//  	function f1(){
+//  		console.log("aa");
+//  	};
+//  } else{
+//  	function f1(){
+//  		console.log("vv");
+//  	};
+//  }
+//  f1();//在IE中无输出
+
+//  var f1;
+//  if (true) {
+//  	f1=function(){
+//  		console.log("aa");
+//  	};
+//  } else{
+//  	f1=function(){
+//  		console.log("vv");
+//  	};
+//  }
+//  f1();
+
+//  反正就多用函数表达式，啥区别暂时也不知道
+    
+    
+    
+     /*
+     *
+     * 函数中的this的指向
+     *
+     *
+     * 普通函数中的this是谁?-----window
+     * 对象.方法中的this是谁?----当前的实例对象
+     * 定时器方法中的this是谁?----window
+     * 构造函数中的this是谁?-----实例对象
+     * 原型对象方法中的this是谁?---实例对象
+     *
+     *
+     * */
+ 
+//    function F1(name) {
+//      this.name=name;
+//    }
+//
+//    console.dir(F1);
+//  所有的函数实际上都是Function的构造函数创建出来的实例对象
+//    var f1=new Function("num1","num2","return num1+num2");
+//    console.log(f1(10,20));
+//    console.log(f1.__proto__==Function.prototype);
+
+//  所以,函数实际上也是对象
+
+//  console.dir(f1);
+//  console.dir(Function);
+
+
+
+//  如果一个东西里面有prototype，又有__proto__,说明是函数,也是对象
+	 	</script>
+		
+	</body>
+</html>

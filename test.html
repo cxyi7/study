@@ -259,29 +259,132 @@
 			// const a = [1,2,3,[1,2,3,[1,2,3]]]
 			// console.log(flatern(a))
 			
-			function deepClone(obj) {
-				if (typeof obj !== 'object' || obj == null) {
-					return obj
-				}
+			// function deepClone(obj) {
+			// 	if (typeof obj !== 'object' || obj == null) {
+			// 		return obj
+			// 	}
 				
-				let res
-				if (obj instanceof Array) {
-					res = []
-				} else {
-					res = {}
-				}
+			// 	let res
+			// 	if (obj instanceof Array) {
+			// 		res = []
+			// 	} else {
+			// 		res = {}
+			// 	}
 				
-				for (let key in obj) {
-					if(obj.hasOwnProperty(key)) {
-						res[key] = deepClone(obj[key])
-					}
-				}
+			// 	for (let key in obj) {
+			// 		if(obj.hasOwnProperty(key)) {
+			// 			res[key] = deepClone(obj[key])
+			// 		}
+			// 	}
 				
-				return res
-			}
-			const a = {a:1,b:2,c:{a:1,b:2},d:[1,2,3]}
-			const b = deepClone(a)
-			console.log(b)
+			// 	return res
+			// }
+			// const a = {a:1,b:2,c:{a:1,b:2},d:[1,2,3]}
+			// const b = deepClone(a)
+			// console.log(b)
+			
+			
+			// class Person {
+			// 	constructor(name) {
+			// 		this.name = name
+			// 	}
+			// 	eat() {
+			// 		console.log(`${this.name}在吃东西`)
+			// 	}
+			// }
+			// class Student extends Person{
+			// 	constructor(name,number) {
+			// 		super(name)
+			// 		this.number = number
+			// 	}
+			// 	study(){
+			// 		console.log(`学号为${this.number}的学生${this.name}正在学习`)
+			// 	}
+			// }
+			// class Teacher extends Person{
+			// 	constructor(name,major) {
+			// 		super(name)
+			// 		this.major = major
+			// 	}
+			// 	teach() {
+			// 		console.log(`${this.name}是教${this.major}的老师`)
+			// 	}
+			// }
+			// // 实例
+			// const xialuo = new Student('夏洛', 100)
+			// console.log(xialuo.name)
+			// console.log(xialuo.number)
+			// xialuo.study()
+			// xialuo.eat()
+			
+			// // 实例
+			// const wanglaoshi = new Teacher('王老师', '语文')
+			// console.log(wanglaoshi.name)
+			// console.log(wanglaoshi.major)
+			// wanglaoshi.teach()
+			// wanglaoshi.eat()
+			
+			// // 关系检测
+			// console.log(xialuo.__proto__ === Student.prototype)
+			// console.log(Student.prototype.constructor === Student)
+			
+			// console.log(Student.prototype.__proto__ === Person.prototype)
+			// console.log(Person.prototype.constructor === Person)
+			
+			// console.log(Person.prototype.__proto__ === Object.prototype)
+			// console.log(Object.prototype.constructor === Object)
+			
+			
+			// function Person(name) {
+			// 	this.name = name
+			// 	this.eat = function() {
+			// 		console.log(`${this.name}在吃东西`)
+			// 	}
+			// }
+			
+			
+			// function Student(name,number) {
+			// 	Person.call(this,name)
+			// 	this.number = number
+			// 	this.study = function() {
+			// 		console.log(`学号为${this.number}的学生${this.name}正在学习`)
+			//     }
+			// }
+			// Student.prototype = new Person()
+			
+			// function Teacher(name,major) {
+			// 	Person.call(this,name)
+			// 	this.major = major
+			// 	this.teach = function() {
+			// 		console.log(`${this.name}是教${this.major}的老师`)
+			//     }
+			// }
+			// Student.prototype = new Person()
+			
+			// // 实例
+			// const xialuo = new Student('夏洛', 100)
+			// console.log(xialuo.name)
+			// console.log(xialuo.number)
+			// xialuo.study()
+			// xialuo.eat()
+			
+			// // 实例
+			// const wanglaoshi = new Teacher('王老师', '语文')
+			// console.log(wanglaoshi.name)
+			// console.log(wanglaoshi.major)
+			// wanglaoshi.teach()
+			// wanglaoshi.eat()
+			
+			// // 关系检测
+			// console.log(xialuo.__proto__ === Student.prototype)
+			// console.log(Student.prototype.hasOwnProperty('constructor')) // false 表明Student.prototype没有'constructor'。它调用的是Person.prototype的'constructor'
+			// console.log(Student.prototype.constructor === Person)
+			
+			// console.log(Student.prototype.__proto__ === Person.prototype)
+			// console.log(Person.prototype.constructor === Person)
+			
+			// console.log(Person.prototype.__proto__ === Object.prototype)
+			// console.log(Object.prototype.constructor === Object)
 		</script>
 	</body>
 </html>
