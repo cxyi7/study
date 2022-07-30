@@ -385,6 +385,73 @@
 			
 			// console.log(Person.prototype.__proto__ === Object.prototype)
 			// console.log(Object.prototype.constructor === Object)
+			
+			// function fn1() {
+			// 	const a = 100
+			// 	return function() {
+			// 		console.log(a)
+			// 	}
+			// }
+			// const a = 200
+			// const fn2 =  fn1()
+			// fn2() // a = 100
+			
+			// function fn1(fn) {
+			// 	const a = 100
+			// 	fn()
+			// }
+			// const a=200
+			// function fn2() {
+			// 	console.log(a)
+			// }
+			// fn1(fn2)
+			
+			// <!-- 隐式绑定 -->
+			// function fn2(){
+			// 	console.log(this.a)
+			// }
+			// const obj = {
+			// 	a: 10,
+			// 	fn2
+			// }
+			// const obj2 = {
+			// 	obj,
+			// 	a: 20
+			// }
+			// obj2.obj.fn2()
+			
+			// <!-- 显示绑定 -->
+			// function fn3(){
+			// 	console.log(this.a)
+			// }
+			// const obj = { a: 10}
+			// function fn4() {
+			// 	return fn3.call(obj)
+			// }
+			// const a = 20
+			// fn4()
+			// window.fn4()
+			
+			// <!-- new绑定 -->
+			// function fn5(a){
+			//   this.a=a;
+			// }
+			// var bar=new fn5(2);
+			// console.log(bar.a);//输出 2
+			
+			<!-- 箭头函数 -->
+			function fn6(){
+			  setTimeout(function(){
+			    console.log(this.a);
+			  },1000);//输出1
+			  setTimeout(()=>{
+			    console.log("====");
+			    console.log(this.a);
+			  },2000);//输出2
+			}
+			var a=1;
+			var obj={a:10}
+			fn6.call(obj);
 		</script>
 	</body>
 </html>
