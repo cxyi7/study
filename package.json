@@ -18,5 +18,6 @@
   "homepage": "https://github.com/cxyi7/interviews#readme",
   "devDependencies": {
     "jest": "^28.1.3"
-  }
+  },
+  "dependencies": {}
 }
