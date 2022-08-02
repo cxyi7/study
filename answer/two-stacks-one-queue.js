@@ -22,14 +22,16 @@
 module.exports = class queue {
     #stack1 = []
     #stack2 = []
+    #len = 0
     
     add(val) {
+        this.#len ++
         return this.#stack1.push(val)
     }
 
     delete() {
 
-        if(this.#stack1.length === 0) return null
+        if(this.#len === 0) return null
 
         let res
         const stack1 = this.#stack1
@@ -45,6 +47,7 @@ module.exports = class queue {
 
         // 将stack2中最后一个值删除，即等同于删除了stack1中最前面的值,即先进先出了
         res = stack2.pop()
+        this.#len --
 
         // 再将stack2中的值从前往后倒回stack1中，相当于换原了stack1的样子
         while(stack2.length) {
@@ -59,6 +62,7 @@ module.exports = class queue {
     }
 
     get length() {
-        return this.#stack1.length
+        // 单独存储，不能遍历链表，不然时间复杂度为o(n)
+        return this.#len
     }
 }
