@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+ * 二叉树
+ */
+const IIree = {
+    value: 5,
+    left: {
+        value: 3,
+        left: {
+            value: 2,
+            left: null,
+            right: null
+        },
+        right: {
+            value: 4,
+            left: null,
+            right: null
+        }
+    },
+    right: {
+        value: 7,
+        left: {
+            value: 6,
+            left: null,
+            right: null
+        },
+        right: {
+            value: 8,
+            left: null,
+            right: null
+        }
+    }
+}
+
+
+/**
+ * 
+ * 前序遍历
+ * root -> left -> right
+ * @param {*} node 二叉树
+ * @returns 
+ * 
+ * 5 3 2 4 7 6 8
+ */
+function preOrderTraverse(node) {
+    if(node == null) return
+    console.log(node.value)
+    preOrderTraverse(node.left)
+    preOrderTraverse(node.right)
+}
+// preOrderTraverse(IIree)
+
+/**
+ * 中序遍历
+ * left -> root -> right
+ * 
+ * @param {*} node 二叉树
+ * @returns 
+ */
+ function inOrderTrvaerse(node) {
+    if(node == null) return
+    inOrderTrvaerse(node.left)
+    console.log(node.value)
+    inOrderTrvaerse(node.right)
+}
+// inOrderTrvaerse(IIree)
+
+function postOrderTrvaerse(node) {
+    if (node == null) return
+    postOrderTrvaerse(node.left)
+    postOrderTrvaerse(node.right)
+    console.log(node.value)
+}
+
+postOrderTrvaerse(IIree)
+    </script>
+</body>
+</html>
