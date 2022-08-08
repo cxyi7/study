@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createPromise(val) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(val)
+                }, 2000);
+            })
+        }
+        !(async function() {
+            // const p1 = createPromise(10)
+            // const p2 = createPromise(20)
+            // const p3 = createPromise(30)
+
+            // 同时出现
+            // const r1 = await p1
+            // console.log(r1)
+            // const r2 = await p2
+            // console.log(r2)
+            // const r3 = await p3
+            // console.log(r3)
+
+            // 同时出现
+            // const list = [p1,p2,p3]
+            // Promise.all(list).then(res => console.log(res))
+
+             // 同时出现
+            // const list = [p1,p2,p3]
+            // for await (let res of list) {
+            //     console.log(res)
+            // }
+
+            //---------分割------------
+
+            // 实现依次出现，而不是同时出现
+            // const p1 = await createPromise(10)
+            // console.log(p1)
+            // const p2 = await createPromise(20)
+            // console.log(p2)
+            // const p3 = await createPromise(30)
+            // console.log(p3)
+
+            // 实现依次出现，而不是同时出现
+            const list = [10,20,30]
+            for (let num of list) {
+                const res = await createPromise(num)
+                console.log(res)
+            }
+        })()
+    </script>
+</body>
+</html>
